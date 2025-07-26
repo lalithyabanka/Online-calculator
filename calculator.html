@@ -1,31 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Online Calculator</title>
+  <meta charset="UTF-8" />
+  <title>Calculator</title>
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #f0f0f0;
+      background: #f5f5f5;
+      font-family: Arial, sans-serif;
       display: flex;
       justify-content: center;
-      padding: 50px;
+      padding-top: 50px;
     }
     .calculator {
       background: #fff;
       padding: 20px;
       border-radius: 10px;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
       width: 260px;
     }
-    input[type="text"] {
+    #result {
       width: 100%;
+      font-size: 24px;
       padding: 10px;
-      font-size: 1.4em;
       margin-bottom: 10px;
+      text-align: right;
       border: 2px solid #ccc;
       border-radius: 5px;
-      text-align: right;
     }
     .buttons {
       display: grid;
@@ -34,20 +34,25 @@
     }
     button {
       padding: 15px;
-      font-size: 1.2em;
-      background: #e0e0e0;
+      font-size: 18px;
       border: none;
+      background: #e0e0e0;
       border-radius: 5px;
       cursor: pointer;
     }
     button:hover {
       background: #d0d0d0;
     }
+    .clear {
+      grid-column: span 4;
+      background: #ff4c4c;
+      color: #fff;
+    }
   </style>
 </head>
 <body>
   <div class="calculator">
-    <input type="text" id="display" disabled>
+    <input type="text" id="result" disabled />
     <div class="buttons">
       <button onclick="append('7')">7</button>
       <button onclick="append('8')">8</button>
@@ -65,23 +70,23 @@
       <button onclick="append('.')">.</button>
       <button onclick="calculate()">=</button>
       <button onclick="append('+')">+</button>
-      <button onclick="clearDisplay()" style="grid-column: span 4;">C</button>
+      <button class="clear" onclick="clearResult()">Clear</button>
     </div>
   </div>
 
   <script>
-    function append(value) {
-      document.getElementById('display').value += value;
+    function append(val) {
+      document.getElementById('result').value += val;
     }
     function calculate() {
       try {
-        document.getElementById('display').value = eval(document.getElementById('display').value);
+        document.getElementById('result').value = eval(document.getElementById('result').value);
       } catch {
-        document.getElementById('display').value = 'Error';
+        document.getElementById('result').value = 'Error';
       }
     }
-    function clearDisplay() {
-      document.getElementById('display').value = '';
+    function clearResult() {
+      document.getElementById('result').value = '';
     }
   </script>
 </body>
